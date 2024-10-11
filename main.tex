@@ -1,0 +1,1013 @@
+%++++++++++++++++++++++++++++++++++++++++
+% Don't modify this section unless you know what you're doing!
+\documentclass[a4paper,12pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+	\usepackage{lmodern} % Police standard sous LaTeX : Latin
+	\usepackage[french]{babel} % Pour la langue fraņcaise
+	\usepackage[utf8]{inputenc} % Pour l'UTF-8
+	\usepackage[T1]{fontenc} % Pour les césures des caractères accentués
+	\usepackage{times}
+	\usepackage[table]{xcolor} % Pour la couleur  
+	\usepackage{tikz} % Pour dessiner
+	\usepackage{fancyhdr} % For heading and footers, les entêtes et les pieds de pâges 
+	\frenchbsetup{StandardLists=true} % à inclure si on utilise
+	\usepackage{enumitem}
+	\usepackage{multicol} % Pour diviser la page, la moitié
+	\usepackage{pdfpages}
+	\usepackage{setspace}
+	\usepackage{multirow}
+        \usepackage{tabularray}
+
+	
+%++++++++++++++++++++++++++++++++++++++++
+
+	\renewcommand{\headrulewidth}{1.5pt}
+	\let\oldheadrule\headrule% Copy \headrule into \oldheadrule
+	\renewcommand{\headrule}{\color{black}\oldheadrule}% Add colour to \headrule
+	\renewcommand{\footrulewidth}{1.5pt} 
+	\let\oldfootrule\footrule%
+	\renewcommand{\footrule}{\color{black}\oldfootrule}% Add colour to \headrule
+	\pagestyle{fancy}                    % Default page style  
+	%\lhead{\includegraphics[scale = 0.2]{figures/logo.png}}   
+	\lhead{\scriptsize{\textcolor{black}{ISE-3}}}
+	\chead{\textcolor{black}{\emph{Cheikh T.D., Julien P. B., Providence M., Daouda S.}}}
+	\rhead{\textcolor{black}{2023-2024}}
+%	\lfoot{\textcolor{white}{\colorbox{cyan}{{\small \textbf{Déterminants de la pauvreté au Sénégal}}}}}        
+%	\rfoot{\textcolor{black}{\small \thepage}}
+\cfoot{%
+\begin{tikzpicture}[remember picture, overlay]
+\fill[black] (current page.south) circle (2em);
+\node[anchor=south,text=white] at (current page.south) {\thepage};
+\end{tikzpicture}}
+	
+
+
+\begin{document}
+
+
+		\begin{figure}[!h]
+	    \begin{minipage}[c]{.30\linewidth}  
+		\begin{center}
+		\includegraphics[width=0.3\textwidth]{ENSAE-Dakar-logo}\\
+		 {\scriptsize \'Ecole nationale de la statistique et de l'analyse économique}
+        \end{center}
+      
+	    \end{minipage}
+	    \hfill%
+	    \hspace{20mm}
+	    \begin{minipage}[c]{.36\linewidth}
+		\begin{center}
+	    \includegraphics[width=0.49\textwidth]{ANSD}
+		\end{center}
+	    \end{minipage}
+	    \end{figure}
+
+
+\begin{center}
+\begin{center}
+
+\thispagestyle{empty}
+
+\textcolor{blue}{\textbf{Cycle Ingénieur Statisticien \'Economiste (ISE)}} 
+\end{center}
+
+\vspace{3mm}
+
+\textbf{{\Large Facteurs explicatifs de la migration interne de travail}} \\
+
+\vspace{4mm}
+Cheikh TIDIANE DIAGNE, Daouda SISSOKO, Providence MBAINDIGUIM, Julien Parfait BIDIAS A.\\ \vspace{2mm} \emph{ Élèves ingénieurs statisticiens économiste - ISE 3} \\ \vspace{3mm}
+\textbf{Sous l'encadrement de :} \\ \vspace{3mm}
+Dr. Jean Rodrigue MALOU \\ \vspace{2mm} Directeur de l'Action Régionale (ANSD\footnote{Agence Nationale de la Statistique et de la Démographie})
+
+\date{\today}
+\end{center}
+
+\rule{0.96\textwidth}{1pt}\\ \vspace{4mm}
+
+\begin{abstract}
+
+Dans un contexte social marqué par l'impact des dynamiques migratoires au Sénégal, cette étude examine les facteurs influençant la migration interne de travail en utilisant les données de l’enquête harmonisée sur les conditions de vie des ménages de 2021. Les résultats montrent que les personnes hautement qualifiées et celles ayant un statut socioprofessionnel élevé sont plus susceptibles de migrer. Les femmes ont 12\% moins de chances de migrer que les hommes, et les ouvriers qualifiés et non qualifiés ont respectivement 38\% et 54\% moins de chances de migrer par rapport aux cadres supérieurs. Les personnes avec un niveau d'instruction supérieur sont plus enclines à migrer que celles ayant un niveau primaire ou secondaire. En outre, la probabilité de migrer diminue avec l'âge, les individus âgés de 28 à 42 ans, 43 à 57 ans et 58 à 62 ans ayant respectivement 40\%, 64\% et 74\% moins de chances de migrer que les jeunes de 15 à 27 ans.\\
+
+\vspace{2mm}
+
+\textbf{Mots clés :} dynamiques migratoires, migration interne.
+\end{abstract}
+
+\newpage
+
+\section*{Introduction}
+
+
+La migration interne de travail est un phénomène important au Sénégal, influençant considérablement la répartition démographique et le développement économique du pays. Selon l'Agence nationale de la statistique et de la démographie (ANSD), environ 20\% de la population sénégalaise a migré à l'intérieur du pays au moins une fois au cours de la dernière décennie. Les données de l’enquête harmonisée sur les conditions de vie des ménages (EHCVM) de 2021 montrent que les régions urbaines, en particulier Dakar, ont attiré une proportion notable de ces migrants en raison des opportunités économiques plus attractives. Par exemple, Dakar représente environ 60\% de la population urbaine totale, ce qui témoigne de son rôle central dans la dynamique de migration interne.\\
+
+
+Ce phénomène est façonné par une multitude de facteurs économiques, sociaux et environnementaux, qui interagissent de manière complexe pour influencer les décisions de mobilité des individus. Quels sont ainsi les principaux facteurs explicatifs de la migration interne de travail au Sénégal et comment influencent-ils les décisions des individus à migrer?\\
+
+Cette recherche vise ainsi à explorer en profondeur les facteurs explicatifs de la migration interne de travail, en mettant l'accent sur leur impact sur les individus et l'économie nationale. En analysant ces dynamiques, notre objectif est de fournir des preuves empiriques robustes qui peuvent informer la formulation de politiques efficaces en matière de développement régional, d'amélioration des conditions de vie et de gestion des ressources humaines.\\
+
+Pour ce faire, notre étude est structurée en quatre parties. Dans la première partie, nous examinerons le cadre théorique et la revue de littérature sur les facteurs explicatifs des migrations de travail. Dans le seconde partie nous décrivons la source de données ainsi que la méthodologie. La troisième partie donne un état descriptif du profil des migrants et dans la dernière partie nous présentons les résultats de l'estimation et mettons en exergue la discussion. 
+
+\section{Revue de la littérature}
+
+La migration interne de travail est un phénomène socio-économique complexe influencé par divers facteurs. Comprendre ces facteurs est crucial pour élaborer des politiques efficaces en matière de développement régional et de gestion des flux migratoires. Cette revue de littérature examine les principaux déterminants de la migration interne de travail, en se concentrant sur les aspects économiques, sociaux et démographiques.
+
+
+\subsection{Facteurs Économiques}
+
+\subsubsection{Disparités Régionales de Salaire et d'Emploi}
+
+Les disparités salariales et les opportunités d'emploi entre les régions constituent des moteurs importants de la migration interne. Harris et Todaro (1970) ont proposé un modèle où les individus migrent des régions rurales vers les centres urbains à la recherche de salaires plus élevés et d'opportunités d'emploi. Des études empiriques ont confirmé cette théorie, démontrant que les différences de salaires et les taux de chômage influencent fortement les décisions de migration (Greenwood, 1997).
+
+
+\subsubsection{Développement Économique et Infrastructure}
+
+
+Le développement économique régional et la qualité des infrastructures jouent également un rôle crucial. Des infrastructures telles que les routes, les services de santé et d'éducation peuvent attirer des travailleurs vers des régions plus développées (Fan \& Stark, 2008). La disponibilité de services publics de qualité est souvent corrélée à une meilleure qualité de vie, ce qui incite les individus à migrer.
+
+\subsection{Facteurs Sociaux}
+
+\subsubsection{Réseaux Migratoires}
+
+Les réseaux sociaux et les liens familiaux sont des déterminants majeurs de la migration interne. Les migrants potentiels sont plus enclins à déménager vers des régions où ils ont des contacts sociaux existants, tels que des membres de la famille ou des amis (Massey et al., 1993). Ces réseaux offrent un soutien émotionnel et financier, réduisant ainsi les coûts et les risques associés à la migration.
+
+\subsubsection{Normes Culturelles et Sociales}
+
+Les normes culturelles et les attentes sociales influencent également les décisions de migration. Dans certaines cultures, la migration peut être perçue comme une étape nécessaire pour améliorer son statut social ou économique (De Haas, 2010). Les attentes sociales concernant la mobilité peuvent donc motiver les individus à chercher des opportunités ailleurs.
+
+\subsection{Facteurs Démographiques}
+
+\subsubsection{Âge et Structure Familiale}
+
+L'âge et la composition familiale sont des variables démographiques importantes qui influencent la migration. Les jeunes adultes, en particulier les hommes, sont plus susceptibles de migrer pour des raisons économiques (Todaro, 1980). Les responsabilités familiales, telles que la présence d'enfants ou de personnes âgées, peuvent limiter la mobilité des individus.
+
+\subsubsection{Urbanisation et Croissance Démographique}
+
+L'urbanisation rapide et la croissance démographique dans les régions rurales peuvent également pousser les individus à migrer. La pression démographique sur les ressources limitées dans les zones rurales entraîne souvent une migration vers les zones urbaines à la recherche de meilleures opportunités économiques (Ravenstein, 1885).\\
+
+
+En somme, les facteurs explicatifs de la migration interne de travail sont multidimensionnels, englobant des aspects économiques, sociaux et démographiques. Les disparités régionales de salaire et d'emploi, le développement économique et les infrastructures, les réseaux sociaux, les normes culturelles, ainsi que les variables démographiques telles que l'âge et la structure familiale, jouent tous un rôle crucial dans ce phénomène complexe. Comprendre ces facteurs permet d'élaborer des politiques plus efficaces pour gérer les flux migratoires internes et promouvoir un développement régional équilibré.
+
+
+
+
+\section{Présentation des données et Méthodologie}
+
+\subsection{Présentation des données de l’étude}
+
+Dans cette étude, nous utiliserons les données de l’enquête harmonisée sur les conditions de vie des ménages au Sénégal réalisée par l’agence nationale de la statistique et de la démographie en 2021. Le choix de cette base est motivé par le fait que les données de l’EHCVM 2021 sont plus récentes que celles de l’EHCVM 2018. Ce qui permettrait de capter les évolutions récentes en termes de motivation à émigrer compte tenu de l’aspect dynamique de la migration.
+Ainsi donc, L’EHCVM 2021 est une enquête d’envergure nationale qui a couvert 7120 ménages répartis sur 58 districts de recensement (DR) soit 12 ménages à enquêter par DR.\\
+
+
+Pour l’enquête, le dernier Recensement Général de la Population et de l’Habitat, de l’Agriculture et de l’Elevage de 2013 (RGPHAE) a servi de base de sondage pour le tirage des unités primaires d’échantillonnage. La base contient 17 164 Districts de Recensement (DR) avec leurs identifiants (région, département, commune/arrondissement et code d’identification), leur taille en nombre de ménages et leur type de milieu de résidence (urbain ou rural). La base de sondage est subdivisée en 28 strates (milieu urbain et rural de chaque région). L’enquête a été organisé par questionnaire ménage qui regroupe un certain nombre de thématiques organisées en 20 sections. Elle traite principalement des caractéristiques des ménages et traite également des questions de leur bien-être.
+Par ailleurs, l’enquête est également organisée en questionnaire communautaire qui regroupe en son sein 5 sections traitant des thématiques allant dans le sens de l’accès à des services sociaux de base, la pratique de l’agriculture, l’implication des membres dans les projets communautaires, etc.\\
+
+\subsection{Méthodologie de l’étude}
+	
+Afin de disposer d’informations sur les migrants internes, nous avions utilisé les données de l’EHCVM comme présentées précédemment. Nous nous sommes appesantis sur la section dédiée aux transferts monétaires envoyés et reçus par les membres du ménage dans le questionnaire ménage. Le lieu de résidence de l’expéditeur a été utilisé pour capter la migration. Il est question d’isoler des expéditeurs vivant dans les mêmes villages ou même régions que leurs bénéficiaires, ceux vivant à l’expéditeur afin de n’en garder que les migrants internes vivant dans d’autres contrées que celles de leurs bénéficiaires. \\
+
+
+Afin d’identifier les déterminants de la migration, nous utiliserons un modèle de régression logistique. La variable à expliquer est donc la migration interne. Les variables explicatives sont constituées des variables économiques et des variables non économiques. L’estimation des odds ratios vont nous permettre de disposer des nombres de chances pour chaque déterminant significatif d’impulser ou de décourager la migration.
+Cependant, bien avant cela, une étape préliminaire dédiée aux analyses descriptives permettra de décrire les caractéristiques socio-démographiques des individus (région, milieu de résidence, sexe, âge, etc) et le profil des migrants (niveau d’instruction, situation d’emploi, les motivations pour la migration, etc).
+Ainsi la spécification générale du modèle s’écrit comme suit : Elle modélise la probabilité d’émigrer en fonction des caractéristiques de l’individu en utilisant une fonction de répartition de type logistique. La probabilité conditionnelle peut s'écrire comme suit :
+
+\begin{equation}
+\Pr(Y_i = 1 \mid X_i) = \frac{\exp(X \beta)}{1 + \exp(X \beta)}
+\end{equation}
+
+L’estimation de ce modèle par la méthode du maximum de vraisemblance permettra de disposer des coefficients $\beta$, ou mieux encore d’estimer les odds ratio (rapport de cotes) :
+
+\begin{equation}
+\text{OR} = \frac{\left( \Pr(Y_i = 1 \mid X_i = 1) / (1 - \Pr(Y_i = 1 \mid X_i = 1)) \right)}{\left( \Pr(Y_i = 1 \mid X_i = 0) / (1 - \Pr(Y_i = 1 \mid X_i = 0)) \right)}
+\end{equation}
+
+Ainsi, par exemple, si l'OR d’une variable donnée est supérieur à 1, cela indique que les individus prenant la modalité de cette variable sont OR fois plus enclins à migrer. En revanche, s’il est inférieur à 1, ces individus sont OR fois moins enclins à migrer.
+
+Le modèle empirique s’écrit de la manière suivante :
+
+
+\begin{equation}
+\begin{aligned}
+    \ln\left(\frac{p_1}{1 - p_1}\right) &= \beta_0 + \beta_1 \text{Sexe} + \beta_2 \text{Statpro} + \beta_3 \text{Nivinst} + \beta_4 \text{MotifTrans} \\
+    &\quad + \beta_5 \text{Mod.transf} + \beta_6 \text{Freq} + \beta_7 \text{MontEnv} + \beta_8 \text{Tr.age}
+\end{aligned}
+\end{equation}
+
+
+\newpage
+
+\subsection{Présentation des variables}
+
+\definecolor{Edward}{rgb}{0.635,0.674,0.674}
+\begin{table}[!ht]
+\centering
+\caption{Variables d'étude}
+\resizebox{\linewidth}{!}{
+\begin{tblr}{
+  row{1} = {Edward},
+  hlines,
+  vlines,
+}
+Variables   & Description          & Mesure                                                                       \\
+MigInt      & Migrant interne      & 1=Oui, 0=Non                                                                 \\
+Sexe        & Sexe de l'expéditeur & 1 = Masculin, 2= Féminin                                                     \\
+Tr\_age     & Age de l'expéditeur  & 1=15 à 27, 2=28 à 42, 3=43 à 57, 4=58 à 62, 5=63 à 77, 6=78 et plus          \\
+NivInst     & Niveau d'instruction & 1=Aucun, 2= Primaire, 3=Secondaire 1, 4=Secondaire 2, 5=Supérieur, 6=NSP     \\
+StatPro     & Statut proféssionnel & 1=Prof liberal, 2=A/E/P, 3=Sal, 4=Artis, 5=El/Et, 6=Inactif, 7=Autres, 8=NSP \\
+MontEnv     & Montant envoyé       & Valeur numérique                                                             \\
+MotifTransf & Motif du transfert   & Plusieurs modalités                                                          \\
+ModTransf   & Mode de transfert    & Plusieurs modalités                                                          
+\end{tblr}}\\
+Source : Bases EHCVM 2021, calcul des auteurs
+\end{table}
+
+
+\section{Résultats de l'étude et discussion}
+
+
+
+\subsection{Analyses descriptives univariées}
+
+
+La figure 1 montre la répartition par sexe des expéditeurs de transferts. On constate une prédominance masculine avec 83\% contre 17\% pour les femmes.
+
+\begin{figure}[!ht]
+	\centering
+	\caption{Répartition de l'échantillon selon le de l'expéditeur}
+	\includegraphics[scale=0.3]{sexe_cropped.pdf}\\
+	Source : Bases EHCVM 2021, calcul des auteurs
+\end{figure}
+
+
+
+La figure 2 présente la diversité des statuts professionnels des expéditeurs. La catégorie la plus représentée est celle des travailleurs pour compte propre, représentant 42,69\% des expéditeurs.Les ouvriers ou employés qualifiés (13,9\%) et non qualifiés (10,06\%) suivent. Les cadres moyens et supérieurs représentent respectivement 7,1\% et 2,08\%.
+
+\begin{figure}[!ht]
+	\centering
+	\caption{}
+	\includegraphics[scale=0.4]{statut_cropped.pdf}\\
+	Source : Bases EHCVM 2021, calcul des auteurs
+\end{figure}
+
+\newpage 
+
+La figure 3 montre le niveau d'instruction des expéditeurs. On observe que 38,3\% des expéditeurs n'ont aucun niveau d'instruction, tandis que les autres se répartissent entre primaire (18,39\%), secondaire (15,53\%) et supérieur (15,51\%). Une portion significative (12,27\%) ne connaît pas leur niveau d'instruction.
+
+\begin{figure}[!ht]
+	\centering
+	\caption{Répartition de l'échantillon suivant le niveau d'instruction}
+	\includegraphics[scale=0.4]{nivinst_cropped.pdf}\\
+	Source : Bases EHCVM 2021, calcul des auteurs
+\end{figure}
+
+
+La figure 4 montre les principaux motifs des transferts. La majorité des transferts (80,35\%) sont effectués pour le soutien courant. D'autres motifs incluent la santé (6,04\%), les fêtes/événements (8,07\%) et l'éducation (3,2\%). Les motifs moins fréquents comprennent l'appui à des travaux agricoles (0,48\%), le démarrage d'une entreprise non agricole (1,10\%), et l'achat de terrain (0,07\%) et l'aide pour la pandémie COVID (0,20 \%).
+
+
+\begin{figure}[!ht]
+	\centering
+	\caption{Répartition de l'échantillon suivant les motifs de transferts}
+	\includegraphics[scale=0.4]{motiftransf_cropped.pdf}\\
+	Source : Bases EHCVM 2021, calcul des auteurs
+\end{figure}
+
+\newpage 
+
+
+\subsection{Analyses descriptives bivariées}
+
+L'analyse du tableau 2 montre que parmi les expéditeurs masculins, 53,67 \% ne sont pas des migrants internes tandis que 46,33 \% le sont. Cela indique une répartition assez équilibrée entre les hommes qui sont des migrants internes et ceux qui ne le sont pas, bien que légèrement plus de la moitié ne soient pas des migrants internes.
+
+Pour les expéditrices féminines, la répartition est légèrement différente. On observe que 56,03 \% des femmes ne sont pas des migrantes internes, tandis que 43,97 \% le sont. Bien que cette répartition soit également proche de l'équilibre, il y a une proportion un peu plus élevée de femmes non migrantes internes par rapport aux hommes.
+
+En résumé, les hommes et les femmes montrent des tendances similaires en termes de migration interne, avec une légère prédominance des non-migrants internes dans les deux sexes. Cependant, les femmes sont un peu plus nombreuses à ne pas être des migrantes internes par rapport aux hommes.
+
+
+% \usepackage{color}
+% \usepackage{tabularray}
+\definecolor{Silver}{rgb}{0.752,0.752,0.752}
+
+\begin{table}[!ht]
+	\caption{Profil du migrant en fonction du sexe}
+	\centering
+	\begin{tblr}{
+			cells = {c},
+			row{1} = {Silver},
+			row{2} = {Silver},
+			cell{1}{1} = {r=2}{},
+			cell{1}{2} = {c=2}{},
+			vlines,
+			hline{1,3-5} = {-}{},
+			hline{2} = {2-3}{},
+		}
+		13,13, Quel est le sexe de l'expéditeur ? & Identification de migrant interne &                            \\
+		& {N'est pas un\\migrant interne}   & {Est un \\migrant interne} \\
+		Masculin                                  & 53,67                             & 46,33                      \\
+		Féminin                                   & 56,03                             & 43,97                      
+	\end{tblr}\\
+	Source de données : EHCVM 2021, calcul des auteurs.  
+\end{table}
+
+
+
+
+
+
+
+\newpage 
+
+
+Le tableau 3 présente les données sur le statut professionnel des expéditeurs et leur identification en tant que migrants internes ou non-migrants internes. Les résultats montrent des différences notables selon le statut professionnel.
+Les cadres supérieurs sont presque équitablement répartis entre non-migrants internes (51,61 \%) et migrants internes (48,39 \%). En revanche, les cadres moyens et agents de maîtrise montrent une majorité de migrants internes (56,44 \%), contre 43,56 \% de non-migrants internes. Parmi les ouvriers ou employés qualifiés, 55,03 \% ne sont pas des migrants internes, tandis que 44,97 \% le sont.
+Les ouvriers ou employés non qualifiés affichent une proportion de 58,42 \% de non-migrants internes et 41,58 \% de migrants internes. Les manœuvres et aides ménagères, ainsi que les stagiaires ou apprentis rémunérés et non rémunérés, montrent des majorités de migrants internes, respectivement 60,78 \%, 65,52 \% et 64,29 \%. Les travailleurs familiaux contribuant à une entreprise familiale présentent une répartition presque égale, avec 53,85 \% de non-migrants internes et 46,15 \% de migrants internes.
+Les travailleurs pour compte propre et les patrons/employeurs montrent également des répartitions relativement équilibrées, avec une légère majorité de migrants internes pour les travailleurs pour compte propre (52,02 \%) et une majorité de non-migrants internes pour les patrons/employeurs (51,05 \%). Les retraités sont majoritairement non-migrants internes (55,32 \%), tandis que les élèves et étudiants sont en majorité des migrants internes (54,05 \%). Enfin, les inactifs autres que les retraités montrent une proportion élevée de non-migrants internes (77,53 \%), avec seulement 22,47 \% de migrants internes.
+En somme, le statut professionnel influence de manière significative la probabilité d'être un migrant interne ou non, avec des variations marquées selon les différentes catégories professionnelles.
+
+
+
+
+
+% \usepackage{color}
+% \usepackage{tabularray}
+\definecolor{Silver}{rgb}{0.752,0.752,0.752}
+\begin{table}[!ht]
+	\centering
+	\caption{Profil du migrant en fonction de son statut professionnel}
+	\begin{tblr}{
+			row{1} = {Silver},
+			row{2} = {Silver,c},
+			cell{1}{1} = {r=2}{},
+			cell{1}{2} = {c=2}{c},
+			cell{3}{2} = {c},
+			cell{3}{3} = {c},
+			cell{4}{2} = {c},
+			cell{4}{3} = {c},
+			cell{5}{2} = {c},
+			cell{5}{3} = {c},
+			cell{6}{2} = {c},
+			cell{6}{3} = {c},
+			cell{7}{2} = {c},
+			cell{7}{3} = {c},
+			cell{8}{2} = {c},
+			cell{8}{3} = {c},
+			cell{9}{2} = {c},
+			cell{9}{3} = {c},
+			cell{10}{2} = {c},
+			cell{10}{3} = {c},
+			cell{11}{2} = {c},
+			cell{11}{3} = {c},
+			cell{12}{2} = {c},
+			cell{12}{3} = {c},
+			cell{13}{2} = {c},
+			cell{13}{3} = {c},
+			cell{14}{2} = {c},
+			cell{14}{3} = {c},
+			cell{15}{2} = {c},
+			cell{15}{3} = {c},
+			vlines,
+			hline{1,3-16} = {-}{},
+			hline{2} = {2-3}{},
+		}
+		13,16,11, Quel est le statut professionnel de l'expéditeur ?   & Identification de migrant interne &                             \\
+		& {N'est pas un 
+			\\migrant interne} & {Est un 
+			\\migrant interne} \\
+		Cadre supérieur                                                & 51.61                             & 48.39                       \\
+		Cadre moyen/agent de maîtrise                                  & 43.56                             & 56.44                       \\
+		Ouvrier ou employé qualifié                                    & 55.03                             & 44.97                       \\
+		Ouvrier ou employé non qualifié                                & 58.42                             & 41.58                       \\
+		Manå“uvre, aide ménagère                                       & 39.22                             & 60.78                       \\
+		Stagiaire ou apprenti rémunéré                                 & 34.48                             & 65.52                       \\
+		Stagiaire ou apprenti non rénuméré                             & 35.71                             & 64.29                       \\
+		Travailleur familial contribuant  à ~ une entreprise familiale & 53.85                             & 46.15                       \\
+		Travailleur pour compte propre                                 & 47.98                             & 52.02                       \\
+		Patron/employeur                                               & 51.05                             & 48.95                       \\
+		Retraité                                                       & 55.32                             & 44.68                       \\
+		Elève/etudiant                                                 & 45.95                             & 54.05                       \\
+		Autre inactif                                                  & 77.53                             & 22.47                       
+	\end{tblr}\\
+	Source de données : EHCVM 2021, calculs des auteurs.
+\end{table}
+
+
+Le tableau 4 examine le niveau d’instruction des expéditeurs en lien avec leur statut de migrant interne ou non.
+Les résultats montrent que ceux sans aucun niveau d’instruction sont répartis en 53,8 \% de non-migrants internes et 46,2 \% de migrants internes. Pour les expéditeurs ayant un niveau d’instruction primaire, 54,75 \% ne sont pas des migrants internes tandis que 45,25 \% le sont. Ceux ayant atteint le premier cycle du secondaire (Secondaire 1) se répartissent en 55,62 \% de non-migrants internes et 44,38 \% de migrants internes.
+Les individus ayant un niveau d'instruction de second cycle du secondaire (Secondaire 2) présentent une répartition presque égale, avec 50,34 \% de non-migrants internes et 49,66 \% de migrants internes. Enfin, les expéditeurs ayant un niveau d’instruction supérieur montrent une répartition de 54,68 \% de non-migrants internes contre 45,32 \% de migrants internes.
+En résumé, bien que les différences ne soient pas très prononcées, il apparaît que les expéditeurs avec un niveau d'instruction plus élevé tendent à être légèrement moins souvent des migrants internes par rapport à ceux ayant un niveau d'instruction secondaire 2, qui montrent une répartition presque égale entre migrants internes et non-migrants internes.\\
+
+
+
+% \usepackage{color}
+% \usepackage{tabularray}
+\definecolor{Silver}{rgb}{0.752,0.752,0.752}
+\begin{table}[!ht]
+	\centering
+	\caption{Profil du migrant en fonction de son niveau d'instruction}
+	\begin{tblr}{
+			row{1} = {Silver},
+			row{2} = {Silver,c},
+			cell{1}{1} = {r=2}{},
+			cell{1}{2} = {c=2}{c},
+			cell{3}{2} = {c},
+			cell{3}{3} = {c},
+			cell{4}{2} = {c},
+			cell{4}{3} = {c},
+			cell{5}{2} = {c},
+			cell{5}{3} = {c},
+			cell{6}{2} = {c},
+			cell{6}{3} = {c},
+			cell{7}{2} = {c},
+			cell{7}{3} = {c},
+			vlines,
+			hline{1,4-8} = {-}{},
+			hline{2-3} = {2-3}{},
+		}
+		{13,15, Quel est le niveau \\d'instruction de l'expéditeur ?} & Identification de migrant interne &                            \\
+		& {N'est pas \\un migrant interne}  & {Est\\~un migrant interne} \\
+		Aucun                                                         & 53.8                              & 46.2                       \\
+		Primaire                                                      & 54.75                             & 45.25                      \\
+		Secondaire 1                                                  & 55.62                             & 44.38                      \\
+		Secondaire 2                                                  & 50.34                             & 49.66                      \\
+		Supérieur                                                     & 54.68                             & 45.32                      
+	\end{tblr}\\
+	Source de données : EHCVM 2021, calculs des auteurs.
+\end{table}
+
+
+
+
+
+Le tableau 5 examine si l’expéditeur a déjà vécu dans le ménage actuel, en lien avec son statut de migrant interne ou non. Les résultats indiquent que parmi ceux qui ont déjà vécu dans ce ménage, 50.29 \% ne sont pas des migrants internes tandis que 49.71 \% le sont. En revanche, pour ceux qui n’ont jamais vécu dans ce ménage, 58.66 \% ne sont pas des migrants internes et 41.34 \% le sont.
+
+
+
+% \usepackage{color}
+% \usepackage{tabularray}
+\definecolor{Silver}{rgb}{0.752,0.752,0.752}
+\begin{table}[!ht]
+	\centering
+	\caption{Profil du migrant selon qu'il vive dans le ménage}
+	\begin{tblr}{
+			cells = {c},
+			row{1} = {Silver},
+			row{2} = {Silver},
+			cell{1}{1} = {r=2}{},
+			cell{1}{2} = {c=2}{},
+			vlines,
+			hline{1,4-5} = {-}{},
+			hline{2-3} = {2-3}{},
+		}
+		{13,17, Est-ce que l'expéditeur a déjà \\vécu dans ce ménage ?} & Identification de migrant interne &                            \\
+		& {N'est pas un \\migrant interne}  & {Est un \\migrant interne} \\
+		Oui                                                             & 50.29                             & 49.71                      \\
+		Non                                                             & 58.66                             & 41.34                      
+	\end{tblr}\\
+	Source de données : EHCVM 2021, calcul des auteurs. 
+\end{table}
+
+
+\newpage 
+
+
+Le tableau 6 présente les données sur le principal motif du transfert d'argent par les expéditeurs et leur identification en tant que migrants internes ou non. Les résultats montrent des différences notables selon les motifs de transfert.
+Pour les transferts motivés par la scolarité ou l’éducation, 61.76 \% des expéditeurs ne sont pas des migrants internes, tandis que 38.24 \% le sont. En ce qui concerne les transferts liés à la santé ou à la maladie, 57.68 \% des expéditeurs ne sont pas des migrants internes et 42.32 \% le sont.
+Les expéditeurs effectuant des transferts pour un soutien courant sont répartis en 51.2 \% de non-migrants internes et 48.8 \% de migrants internes, ce qui montre une répartition presque égale. Pour les transferts liés à l'appui pour des travaux dans les champs, la répartition est exactement égale, avec 50 \% de non-migrants internes et 50 \% de migrants internes.
+Les transferts destinés à l'appui ou au démarrage d’une entreprise non agricole montrent que 59.76 \% des expéditeurs ne sont pas des migrants internes, contre 40.24 \% qui le sont. Les transferts pour des fêtes ou des événements montrent la plus grande disparité, avec 64 \% de non-migrants internes et seulement 36 \% de migrants internes.
+Les transferts motivés par l'achat de terrain se répartissent en 60 \% de non-migrants internes et 40 \% de migrants internes. Enfin, pour les transferts destinés à la construction d’une maison, 64.86 \% des expéditeurs ne sont pas des migrants internes, tandis que 35.14 \% le sont.
+En résumé, les expéditeurs qui ne sont pas des migrants internes sont majoritaires pour la plupart des motifs de transfert, en particulier pour des motifs liés à des fêtes, des événements, et la construction de maisons. En revanche, les transferts pour des soutiens courants et des travaux dans les champs montrent une répartition plus équilibrée entre migrants internes et non-migrants internes.
+
+
+% \usepackage{color}
+% \usepackage{tabularray}
+\definecolor{Silver}{rgb}{0.752,0.752,0.752}
+\begin{table}[!ht]
+	\centering
+	\caption{Profil du migrant et motif des transferts}
+	\begin{tblr}{
+			row{1} = {Silver},
+			row{2} = {Silver,c},
+			cell{1}{1} = {r=2}{},
+			cell{1}{2} = {c=2}{c},
+			cell{3}{2} = {c},
+			cell{3}{3} = {c},
+			cell{4}{2} = {c},
+			cell{4}{3} = {c},
+			cell{5}{2} = {c},
+			cell{5}{3} = {c},
+			cell{6}{2} = {c},
+			cell{6}{3} = {c},
+			cell{7}{2} = {c},
+			cell{7}{3} = {c},
+			cell{8}{2} = {c},
+			cell{8}{3} = {c},
+			cell{9}{2} = {c},
+			cell{9}{3} = {c},
+			cell{10}{2} = {c},
+			cell{10}{3} = {c},
+			vlines,
+			hline{1,4-11} = {-}{},
+			hline{2-3} = {2-3}{},
+		}
+		{13,20, Quel est le principal\\~motif du transfert?} & Identification de migrant interne &                            \\
+		& {N'est pas\\~un migrant interne}  & {Est \\un migrant interne} \\
+		Scolarité, éducation                                 & 61.76                             & 38.24                      \\
+		Santé, maladie                                       & 57.68                             & 42.32                      \\
+		Soutien courant                                      & 51.2                              & 48.8                       \\
+		Appui travaux champs                                 & 50                                & 50                         \\
+		{Appui/ démarrage d'une \\entreprise non agricole}   & 59.76                             & 40.24                      \\
+		Fête/evènements                                   & 64                                & 36                         \\
+		Achat de terrain                                     & 60                                & 40                         \\
+		Construction d'une maison                            & 64.86                             & 35.14                      
+	\end{tblr}\\
+	Source de données : EHCVM 2021, calculs des auteurs.
+\end{table}
+
+
+\newpage
+
+
+
+Le tableau sur les tranches d'âge et l'identification en tant que migrant interne montre des variations intéressantes selon les groupes d'âge.
+Pour la tranche d'âge de 15 à 27 ans, une majorité significative, soit 61.5 \%, sont des migrants internes, tandis que 38.5 \% ne le sont pas. Cela suggère que les jeunes adultes sont plus enclins à être des migrants internes.
+Dans la tranche d'âge de 28 à 42 ans, la répartition est plus équilibrée avec 51.06 \% de non-migrants internes et 48.94 \% de migrants internes.
+Les personnes âgées de 43 à 57 ans montrent une tendance marquée vers la non-migration interne, avec 62.98 \% de non-migrants internes contre 37.02 \% de migrants internes. \\
+
+
+Pour les tranches d'âge plus avancées, la proportion de non-migrants internes augmente encore : de 58 à 62 ans, 67.9 \% ne sont pas des migrants internes et 32.1 \% le sont ; de 63 à 77 ans, 62.8 \% ne sont pas des migrants internes et 37.2 \% le sont ; et pour les personnes de 78 ans et plus, 56.48 \% ne sont pas des migrants internes tandis que 43.52 \% le sont.
+En résumé, il semble y avoir une corrélation entre l'âge et la propension à être un migrant interne, avec les jeunes adultes ayant la plus haute proportion de migrants internes, tandis que les personnes âgées montrent une tendance croissante à ne pas être des migrants internes.\\
+
+
+
+% \usepackage{color}
+% \usepackage{tabularray}
+\definecolor{Silver}{rgb}{0.752,0.752,0.752}
+\begin{table}[!htp]
+	\centering
+	\caption{Profil du migrant en fonction de l'âge}
+	\begin{tblr}{
+			row{1} = {Silver},
+			row{2} = {Silver,c},
+			cell{1}{1} = {r=2}{},
+			cell{1}{2} = {c=2}{c},
+			cell{3}{2} = {c},
+			cell{3}{3} = {c},
+			cell{4}{2} = {c},
+			cell{4}{3} = {c},
+			cell{5}{2} = {c},
+			cell{5}{3} = {c},
+			cell{6}{2} = {c},
+			cell{6}{3} = {c},
+			cell{7}{2} = {c},
+			cell{7}{3} = {c},
+			cell{8}{2} = {c},
+			cell{8}{3} = {c},
+			vlines,
+			hline{1,3-9} = {-}{},
+			hline{2} = {2-3}{},
+		}
+		{Tranche d'âge} & Identification de migrant interne &                            \\
+		& {N'est pas\\un migrant interne}  & {Est \\un migrant interne} \\
+		15  à  27 ans                                                     & 38.5                              & 61.5                       \\
+		28  à  42 ans                                                     & 51.06                             & 48.94                      \\
+		43  à  57 ans                                                     & 62.98                             & 37.02                      \\
+		58  à  62 ans                                                     & 67.9                              & 32.1                       \\
+		63  à  77 ans                                                     & 62.8                              & 37.2                       \\
+		78 ans et plus                                                     & 56.48                             & 43.52                      
+	\end{tblr}\\
+Source de données : EHCVM 2021, calcul des auteurs. 
+\end{table}
+
+
+
+\newpage 
+
+
+\subsection{Résultats de l'estimation et recommandations}
+
+
+\begin{itemize}
+	\item \textbf{Analyse des coefficients du modèle} 
+\end{itemize}
+
+
+
+Les résultats empiriques de notre modèle montrent que, comparativement aux hommes, les femmes ont moins de chances de migrer. Par conséquent, la probabilité de migration chez les femmes est plus faible que chez les hommes. Cela indique qu'au Sénégal, la migration interne est plus fréquente chez les hommes que chez les femmes.\\
+
+
+La qualification est un facteur clé qui augmente la probabilité de migrer d'un lieu offrant moins d'opportunités vers les régions économiquement attractives du Sénégal. Nos résultats indiquent que, par rapport aux cadres supérieurs, les ouvriers ou employés qualifiés et non qualifiés, les travailleurs indépendants et les travailleurs familiaux ont moins de chances de migrer vers d'autres villes du Sénégal. Ainsi, le statut d'occupation ou la catégorie socioprofessionnelle est un déterminant majeur de la migration interne au Sénégal. Les personnes ayant un statut élevé ont une plus de chance de migrer que celles ayant un statut moyen ou inférieur. Cela pourrait s'expliquer par le fait que les individus avec un statut très élevé sont de plus en plus attirés par les villes économiquement dynamiques comme Dakar. Quant aux retraités, étudiants et inactifs, leur statut d'occupation n'est pas un facteur déterminant pour la migration vers d'autres régions ou villes du Sénégal. \\
+
+
+L'estimation montre aussi que les individus ayant un niveau d'éducation sont moins susceptibles de migrer que ceux sans éducation. Le niveau d'instruction influence donc la décision de migrer ou non. De plus, les personnes ayant un niveau d'instruction supérieur sont plus susceptibles de migrer que celles ayant un niveau primaire, secondaire 1 ou secondaire 2. Ainsi, plus le niveau d'instruction est élevé, plus la probabilité de migrer vers des villes offrant davantage d'opportunités augmente. \\
+
+
+En pratique, les jeunes de moins de 27 ans sont plus enclins à migrer. Nos estimations montrent que les personnes âgées de 28 ans et plus ont moins de chances de migrer que celles âgées de 15 à 27 ans. De plus, la chance de migrer diminue avec l'âge. \\
+
+
+En conclusion, le sexe, l'âge, le niveau d'instruction et le statut d'occupation sont des facteurs influençant la migration interne au Sénégal. Cependant, ces résultats ne nous indiquent pas, par exemple, combien de fois les hommes ont plus de chances de migrer que les femmes. Donc nous allons passer à l’interprétation des odds ratios.\\
+
+\vspace{3mm}
+
+
+\newpage 
+
+\begin{itemize}
+	\item \textbf{Analyse des rapports de chances relatives}
+\end{itemize}
+
+Les résultats des odds ratios montrent que les femmes ont 12\% moins de chances de migrer en interne que les hommes. Comparativement aux cadres supérieurs, les ouvriers qualifiés et non qualifiés ont respectivement 38\% et 54\% moins de chances de migrer en interne. En ce qui concerne le niveau d'instruction, les personnes ayant un niveau primaire ou secondaire 1 ont 27\% moins de chances de migrer en interne, tandis que cette probabilité est de 19\% et 38\% respectivement pour les niveaux secondaire 2 et supérieur. Enfin, les personnes âgées de 28-42 ans, 43-57 ans et 58-62 ans ont respectivement 40\%, 64\% et 74\% moins de chances de migrer en interne par rapport aux individus âgés de 15-27 ans.
+
+\definecolor{Silver}{rgb}{0.752,0.752,0.752}
+%\definecolor{Teal}{rgb}{0,0.494,0.474}
+\begin{table}[!ht]
+	\centering
+	\begin{minipage}{10cm}
+		\caption{Rapports de chances relatives-1}
+		\resizebox{\linewidth}{!}{
+			\begin{tblr}{
+					row{1} = {Silver,fg=black},
+					row{2} = {Silver,c,fg=black},
+					cell{1}{1} = {r=2}{},
+					cell{1}{2} = {c},
+					cell{3}{2} = {c},
+					cell{4}{2} = {c},
+					cell{5}{2} = {c},
+					cell{6}{2} = {c},
+					cell{7}{2} = {c},
+					cell{8}{2} = {c},
+					cell{9}{2} = {c},
+					cell{10}{2} = {c},
+					cell{11}{2} = {c},
+					cell{12}{2} = {c},
+					cell{13}{2} = {c},
+					cell{14}{2} = {c},
+					cell{15}{2} = {c},
+					cell{16}{2} = {c},
+					cell{17}{2} = {c},
+					cell{18}{2} = {c},
+					cell{19}{2} = {c},
+					cell{20}{2} = {c},
+					cell{21}{2} = {c},
+					cell{22}{2} = {c},
+					cell{23}{2} = {c},
+					cell{24}{2} = {c},
+					cell{25}{2} = {c},
+					cell{26}{2} = {c},
+					cell{27}{2} = {c},
+					cell{28}{2} = {c},
+					cell{29}{2} = {c},
+					cell{30}{2} = {c},
+					cell{31}{2} = {c},
+					cell{32}{2} = {c},
+					cell{33}{2} = {c},
+					cell{34}{2} = {c},
+					cell{35}{2} = {c},
+					cell{36}{2} = {c},
+					cell{37}{2} = {c},
+					cell{38}{2} = {c},
+					cell{39}{2} = {c},
+					cell{40}{2} = {c},
+					cell{41}{2} = {c},
+					vlines,
+					hline{1,4-42} = {-}{},
+					hline{2-3} = {2}{},
+				}
+				Variables                                                                                             & Odds Ratios                       \\
+				& Identification de migrant interne \\
+				&                                   \\
+				Identification de migrant interne                                                                     &                                   \\
+				&                                   \\
+				sexe de l'expéditeur  = 2, Féminin                                                                    & 0.876*                            \\
+				& {[}0.064]                         \\
+				statut professionnel de l'expéditeur = 2, Cadre moyen/agent de maitrise                              & 0.914                             \\
+				& {[}0.187]                         \\
+				statut professionnel de l'expéditeur  = 3, Ouvrier ou employé qualifié                                & 0.564***                          \\
+				& {[}0.113]                         \\
+				statut professionnel de l'expéditeur = 4, Ouvrier ou employé non qualifié                             & 0.455***                          \\
+				& {[}0.097]                         \\
+				statut professionnel de l'expéditeur = 5, Manoeuvre, aide ménagère                                   & 0.769                             \\
+				& {[}0.196]                         \\
+				statut professionnel de l'expéditeur  = 6, Stagiaire ou Apprenti rémunéré                             & 0.922                             \\
+				& {[}0.289]                         \\
+				statut professionnel de l'expéditeur  = 7, Stagiaire ou Apprenti non rénuméré                         & 1.068                             \\
+				& {[}0.668]                         \\
+				statut professionnel de l'expéditeur = 8, Travailleur familial contribuant à une entreprise familiale & 0.513                             \\
+				& {[}0.240]                         \\
+				statut professionnel de l'expéditeur = 9, Travailleur pour compte propre                              & 0.656**                           \\
+				& {[}0.131]                         \\
+				statut professionnel de l'expéditeur  = 10, Patron/Employeur                                          & 0.676                             \\
+				& {[}0.177]                         \\
+				statut professionnel de l'expéditeur = 11, Retraité                                                   & 1.023                             \\
+				& {[}0.397]                         \\
+				statut professionnel de l'expéditeur = 12, Elève Etudiant                                            & 0.706                             \\
+				& {[}0.201]                         \\
+				statut professionnel de l'expéditeur = 13, Autre inactif                                              & 0.237***                          \\
+				& {[}0.050]                         \\
+				niveau d'instruction de l'expéditeur = 2, Primaire                                                    & 0.761***                          \\
+				& {[}0.055]                         \\
+				niveau d'instruction de l'expéditeur  = 3, Secondaire 1                                               & 0.778***                          \\
+				& {[}0.074]                         \\
+				niveau d'instruction de l'expéditeur = 4, Secondaire 2                                                & 0.968                             \\
+				& {[}0.119]                         \\
+				niveau d'instruction de l'expéditeur = 5, Supérieur                                                   & 0.736***                          \\
+				& {[}0.075]                         \\
+				montant envoyé  a chaque fois                                                                         & 1.000                             \\
+				& 7439                              \\                
+			\end{tblr}
+		}\\
+		Source de données : EHCVM 2021, calcul des auteurs.
+	\end{minipage}
+\end{table}
+
+
+
+\newpage 
+
+
+\definecolor{Silver}{rgb}{0.752,0.752,0.752}
+%\definecolor{Teal}{rgb}{0,0.494,0.474}
+\begin{table}[!htp]
+	\centering
+	\begin{minipage}{10cm}
+		\caption{Résultats des rapports de chances relatives}
+		\resizebox{\linewidth}{!}{
+			\begin{tblr}{
+					row{1} = {Silver,fg=black},
+					row{2} = {Silver,c,fg=black},
+					cell{1}{1} = {r=2}{},
+					cell{1}{2} = {c},
+					cell{3}{2} = {c},
+					cell{4}{2} = {c},
+					cell{5}{2} = {c},
+					cell{6}{2} = {c},
+					cell{7}{2} = {c},
+					cell{8}{2} = {c},
+					cell{9}{2} = {c},
+					cell{10}{2} = {c},
+					cell{11}{2} = {c},
+					cell{12}{2} = {c},
+					cell{13}{2} = {c},
+					cell{14}{2} = {c},
+					cell{15}{2} = {c},
+					cell{16}{2} = {c},
+					cell{17}{2} = {c},
+					cell{18}{2} = {c},
+					cell{19}{2} = {c},
+					cell{20}{2} = {c},
+					cell{21}{2} = {c},
+					cell{22}{2} = {c},
+					cell{23}{2} = {c},
+					cell{24}{2} = {c},
+					cell{25}{2} = {c},
+					cell{26}{2} = {c},
+					cell{27}{2} = {c},
+					cell{28}{2} = {c},
+					cell{29}{2} = {c},
+					cell{30}{2} = {c},
+					cell{31}{2} = {c},
+					cell{32}{2} = {c},
+					cell{33}{2} = {c},
+					cell{34}{2} = {c},
+					cell{35}{2} = {c},
+					cell{36}{2} = {c},
+					cell{37}{2} = {c},
+					cell{38}{2} = {c},
+					cell{39}{2} = {c},
+					cell{40}{2} = {c},
+					cell{41}{2} = {c},
+					cell{42}{2} = {c},
+					cell{43}{2} = {c},
+					cell{44}{2} = {c},
+					cell{45}{2} = {c},
+					cell{46}{2} = {c},
+					cell{47}{2} = {c},
+					cell{48}{2} = {c},
+					cell{49}{2} = {c},
+					cell{50}{2} = {c},
+					cell{51}{2} = {c},
+					cell{52}{2} = {c},
+					cell{53}{2} = {c},
+					cell{54}{2} = {c},
+					cell{55}{2} = {c},
+					cell{56}{2} = {c},
+					vlines,
+					hline{1,4-57} = {-}{},
+					hline{2-3} = {2}{},
+				}
+				Variables                                                                     & Odds Ratios                       \\
+				& Identification de migrant interne \\
+				Identification de migrant interne                                             &                                   \\
+				&                                   \\
+				l'âge de l'expéditeur  = 2, 28 C  42 ans                                      & 0.687***                          \\
+				& {[}0.064]                         \\
+				l'âge de l'expéditeur = 3, 43 C  57 ans                                       & 0.478***                          \\
+				& {[}0.050]                         \\
+				l'âge de l'expéditeur = 4, 58 C  62 ans                                       & 0.390***                          \\
+				& {[}0.070]                         \\
+				l'âge de l'expéditeur= 5, 63 C  77 ans                                        & 0.507***                          \\
+				& {[}0.106]                         \\
+				l'âge de l'expéditeur = 6, 78 ans et plus                                     & 0.727***                          \\
+				& {[}0.076]                         \\
+				principal motf du tansfert = 2, Sant), maladie                                & 1.040                             \\
+				& {[}0.195]                         \\
+				principal motf du tansfert = 3, Souten courant                                & 1.131                             \\
+				& {[}0.175]                         \\
+				principal motf du tansfert = 4, Appui tavaux champs                           & 1.436                             \\
+				& {[}0.599]                         \\
+				principal motf du tansfert = 5, Appui/ démarrage d'une enteprise non agricole & 0.752                             \\
+				& {[}0.222]                         \\
+				principal motf du tansfert = 6, Fête/Evènement                                & 0.863                             \\
+				& {[}0.156]                         \\
+				principal motf du tansfert = 7, Achatde trrain                                & 3.598                             \\
+				& {[}4.069]                         \\
+				principal motf du tansfert = 8, Constucton d'une maison                       & 1.686                             \\
+				& {[}0.723]                         \\
+				principal motf du tansfert = 9, Aide à cause de la COVID-19                   & 0.376                             \\
+				& {[}0.267]                         \\
+				principal mode de transfert= 2, Banque                                        & 0.252***                          \\
+				& {[}0.060]                         \\
+				principal mode de tansfert = 3, Post                                          & 0.696                             \\
+				& {[}0.175]                         \\
+				principal mode de tansfert = 4, Mobile money                                  & 6.057***                          \\
+				& {[}0.458]                         \\
+				principal mode de tansfert = 5, Compensaton                                   & 5.962***                          \\
+				& {[}2.608]                         \\
+				principal mode de tansfert = 6, Cash (main C  main)                           & 1.517***                          \\
+				& {[}0.167]                         \\
+				principal mode de tansfert = 7, Voyageur                                      & 4.161***                          \\
+				& {[}0.919]                         \\
+				principal mode de tansfert = 8, Commerce/Fax                                  & 1.150                             \\
+				& {[}0.435]                         \\
+				principal mode de tansfert = 9, Société de tansport                           & 3.475**                           \\
+				& {[}2.063]                         \\
+				fréquence des transferts envoyés à  à chaque fois = 2, Trimestre              & 0.743*                            \\
+				& {[}0.129]                         \\
+				fréquence des transferts envoyés à  à chaque fois = 3, Semestre               & 0.538**                           \\
+				& {[}0.154]                         \\
+				fréquence des transferts envoyés à  à chaque fois= 4, Année                   & 0.564***                          \\
+				& {[}0.065]                         \\
+				fréquences des transferts envoyés à  à chaque fois= 5, Irrégulier             & 0.950                             \\
+				& {[}0.056]                         \\
+				Pseudo R2                                                                     & 0.175                             \\
+				Observations                                                                  & 7439                              
+		\end{tblr}}
+		Source de données : EHCVM 2021, calcul des auteurs. 
+	\end{minipage}
+\end{table}
+
+
+\newpage 
+
+
+\newpage 
+
+
+\subsection{Analyse de la Robustesse du modèle}
+
+
+
+L'analyse de la migration interne à l'aide d'un modèle logistique binaire, où la variable dépendante à deux modalités indique si un individu est un migrant interne (1) ou non (0), révèle plusieurs résultats importants. La performance globale du modèle est représentée par un taux de classification correcte de 70,78\%, ce qui indique que le modèle identifie correctement environ 71\% des cas. 
+
+\begin{itemize}
+	\item \textbf{La sensibilité} du modèle est de 76,00\%, ce qui signifie que le modèle a une bonne capacité à identifier correctement les migrants internes. En d'autres termes, parmi ceux qui migrent en interne, 76\% sont correctement classifiés par le modèle.
+	\item \textbf{La spécificité} est de 66,34\%, ce qui indique que le modèle identifie correctement 66,34\% des non-migrants internes. Bien que la spécificité soit légèrement inférieure à la sensibilité, elle reste à un niveau raisonnable pour distinguer les non-migrants.
+	\item Enfin, l'aire sous la courbe ROC  (AUC=0,7671) indique une performance globale satisfaisante du modèle, avec une bonne capacité discriminative entre les migrants et les non-migrants internes. Une aire sous la courbe de 0,7671, ce qui signifie que le modèle a une forte capacité à distinguer les différentes classes.
+\end{itemize}
+
+
+\begin{figure}[!htp]
+	\centering
+	\caption{Courbe de ROC}
+	\includegraphics[scale=0.8]{CourbeRoc}\\
+	Source de données : EHCVM 2021, calcul des auteurs. 
+\end{figure}
+
+\newpage 
+
+
+\section*{Conclusion}
+
+La migration est aujourd’hui un phénomène très répandu dans les pays africains. Bien que des milliers de jeunes quittent le continent pour l’Occident, la migration interne commence à gagner du terrain et touche de plus en plus les pays africains en général, et le Sénégal en particulier. Comprendre les facteurs expliquant ce phénomène est important pour l’élaboration des politiques publiques. Cette étude utilise un modèle de régression logistique pour analyser les déterminants influençant la décision de migration interne au Sénégal, en utilisant les données de l’enquête EHCVM-2021. Les résultats montrent que le sexe, le niveau d’éducation, le statut d’occupation et l’âge sont les principaux facteurs explicatifs de la migration interne au Sénégal durant la période de l’étude.
+
+
+\newpage
+
+	\begin{thebibliography}{10}
+	\bibitem{m1}
+Harris, J. R., \& Todaro, M. P. (1970). Migration, unemployment and development: a two-sector analysis. The American economic review, 60(1), 126-142.
+	\bibitem{m6}
+Greenwood, M. J. (1997). Internal migration in developed countries. Handbook of population and family economics, 1, 647-720.
+	\bibitem{m6}
+Fan, C. S., \& Stark, O. (2008). Rural-to-urban migration, human capital, and agglomeration. Journal of Economic Behavior \& Organization, 68(1), 234-247.
+	
+	\bibitem{m6}
+Eick, S. G., Massey, W. A., \& Whitt, W. (1993). The physics of the Mt/G/queue. Operations Research, 41(4), 731-742.
+	
+	\bibitem{m6}
+De Haas, H. (2010). Migration transitions: a theoretical and empirical inquiry into the developmental drivers of international migration.
+	\bibitem{m6}
+Todaro, M. (1980). Internal migration in developing countries: a survey. In Population and economic change in developing countries (pp. 361-402). University of Chicago Press.
+	\bibitem{m6}
+Ravenstein, E. G. (1885). The laws of migration. Royal Statistical Society.
+\end{thebibliography}
+
+
+\newpage 
+
+\section*{Annexes}
+
+\begin{itemize}
+	\item Coefficients du modèle logit 
+\end{itemize}
+
+
+% \usepackage{colortbl}
+
+
+\begin{table}[!htp]
+	\centering
+	\begin{minipage}{6cm}
+	\caption{Coefficients du modèle logit}
+	\resizebox{\linewidth}{!}{
+	\begin{tabular}{lc} 
+		\hline
+		\rowcolor[rgb]{0.753,0.753,0.753} \multicolumn{1}{c}{Variables} & coefficients  \\ 
+		\hline
+		Sexe                                                            &               \\
+		Féminin                                                         & -0.141*       \\
+		& (0.073)       \\
+		Statut professionnel                                            &               \\
+		Cadre moyen/agent de maîtrise                                   & -0.094        \\
+		& (0.207)       \\
+		Ouvrier ou employé qualifié                                     & -0.603***     \\
+		& (0.202)       \\
+		Ouvrier ou employé non qualifié                                 & -0.854***     \\
+		& (0.214)       \\
+		Manœuvre, aide ménagère                                         & -0.324        \\
+		& (0.258)       \\
+		Stagiaire ou Apprenti rémunéré                                  & -0.133        \\
+		& (0.337)       \\
+		Stagiaire ou Apprenti non rénuméré                              & -0.026        \\
+		& (0.693)       \\
+		Travailleur familial                                            & -0.777*       \\
+		& (0.471)       \\
+		Travailleur pour compte propre                                  & -0.505**      \\
+		& (0.202)       \\
+		Patron/Employeur                                                & -0.428        \\
+		& (0.270)       \\
+		Retraité                                                        & 0.011         \\
+		& (0.386)       \\
+		Elève/Etudiant                                                  & -0.355        \\
+		& (0.292)       \\
+		Autre inactif                                                   & -0.399        \\
+		& (0.383)       \\
+		Ne sait pas                                                     & -1.369***     \\
+		& (0.212)       \\
+		Le niveau d'instruction                                         &               \\
+		Primaire                                                        & -0.386***     \\
+		& (0.075)       \\
+		Secondaire 1                                                    & -0.371***     \\
+		& (0.095)       \\
+		Secondaire 2                                                    & -0.165        \\
+		& (0.123)       \\
+		Supérieur                                                       & -0.450***     \\
+		& (0.103)       \\
+		Ne sait pas                                                     & -0.596***     \\
+		& (0.107)       \\
+		montant\_env                                                    & 0.000         \\
+		& (0.000)       \\
+		Tranche dâge                                                    &               \\
+		28 à 42 ans                                                     & -0.353***     \\
+		& (0.095)       \\
+		43 à 57 ans                                                     & -0.712***     \\
+		& (0.106)       \\
+		58 à 62 ans                                                     & -0.942***     \\
+		& (0.172)       \\
+		63 à 77 ans                                                     & -0.690***     \\
+		& (0.211)       \\
+		78 ans et plus                                                  & -0.202*       \\
+		\hline
+	\end{tabular}}
+\end{minipage}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+\end{document}
